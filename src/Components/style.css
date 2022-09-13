@@ -1,0 +1,85 @@
+@media only screen and (max-width: 400px) {
+    /* LOGIN */
+    .login-form-holder{
+        width: 90%;
+        margin-top: 20% !important;
+    }
+    .login-form-holder .login-form {
+        width: 99%;
+    }
+
+    /* Register */
+    .form-holder{
+        width: 99%;
+        margin-top: 20% !important;
+    }
+    .form-container{
+        width: 99% !important;
+    }
+    .form-group{
+        width: 100% !important;
+    }
+
+    /* Player */
+    .p-0{
+        width: 100% !important;
+    }
+
+    .svg-background {
+        background-image: none;
+        min-height: 95vh;
+    }
+
+    .musicoker-container{
+        width: 100% !important;
+        border-radius: 5px !important;
+
+    }
+    .main-playlist {
+        height: 100%;
+        border-left: none;
+    }
+
+    /* Player image and stuff */
+    .main-player .music-image {
+        left: 0;
+        right: 0;
+    }
+
+    .main-player .music-progress .track-progress {
+        width: 240px;
+    }
+    .main-player .music-progress {
+        left: 0;
+        right: 0;
+        width: 85%;
+       
+    }
+    .main-player .player-buttons {
+        display: flex;
+        width: 90%;
+        justify-content: space-evenly;
+        font-size: 30px;
+        bottom: 10px;
+        right: 0;
+        left: 0;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .btn-mobile{
+        display: flex;
+    }
+    .btn-mobile a{
+        min-width: 42%;
+    }
+    
+    .logo{
+        width: 45% !important;
+    }
+
+    .volume-logo{
+        display: none;
+    }
+
+}
