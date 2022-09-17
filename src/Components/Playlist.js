@@ -10,6 +10,8 @@ import './style.css';
 
 library.add(faList);
 const axios = require('axios');
+const player = new Audio();
+
 
 function Playlist() {
     const PlaylistSongs = useRef({});
@@ -50,6 +52,10 @@ function Playlist() {
             image: songData.image,
         });
         setSong(index);
+        player.src="http://localhost:8000"+songs[index].hash_key;
+        console.log("RRR:");
+        console.log(Player );
+
     }
 
     useEffect(() => {
@@ -106,7 +112,7 @@ function Playlist() {
             {
                 localStorage.getItem('auth_token') ? 
                 <React.Fragment>
-                    <Player Song={Song} songs={songs} setSong={setSong} CurrentSong={CurrentSong}/>
+                    <Player Song={Song} songs={songs} setSong={setSong} CurrentSong={CurrentSong} player={player} />
                     <div className="col-6 p-0">
                         <div className="main-playlist p-2">
                             <h6 className="text-center">

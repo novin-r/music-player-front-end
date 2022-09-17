@@ -26,9 +26,9 @@ import axios from "axios";
 import './style.css';
 
 library.add(faList, faStop, faAngleDoubleLeft, faAngleDoubleRight, faStepForward, faVolumeDown, faStepBackward, faUndoAlt, faVolumeOff, faVolumeMute, faVolumeUp, faCompactDisc, faPause, faPlay);
-const player = new Audio();
+// const player = new Audio();
 
-export default function Player({Song,songs, setSong, CurrentSong}) {
+export default function Player({Song,songs, setSong, CurrentSong,player}) {
     // console.log(nextSong);
 
     const [loading, setLoading] = useState(true);
@@ -40,9 +40,10 @@ export default function Player({Song,songs, setSong, CurrentSong}) {
         volume_bar: true
     });
     const [playerCurrentTime, setPlayerCurrentTime] = useState();
-    // const [progressBar, setProgressBar] = useState(0);
-    let progressBar;
-    player.src="http://localhost:8000"+songs[Song].hash_key;
+    const [isPlay,setIsPlay] = useState(false);
+    const [progressBar, setProgressBar] = useState(0);
+    // let progressBar;
+    // player.src="http://localhost:8000"+songs[Song].hash_key;
 
     player.onloadedmetadata = (e) => {
         if (player.readyState > 0) {
@@ -51,16 +52,15 @@ export default function Player({Song,songs, setSong, CurrentSong}) {
 
         };
     }
-       
-
-
-
 
     const skipTrackHandler = async (direction) => {
         await console.log("Ok");
     };
 
     function playSong() {
+        setIsPlay(true);
+
+        
         var playPromise = player.play();
 
         if (playPromise !== undefined) {
@@ -69,6 +69,7 @@ export default function Player({Song,songs, setSong, CurrentSong}) {
                 console.log(error)
             });
         }
+
 
     }
 
@@ -83,7 +84,7 @@ export default function Player({Song,songs, setSong, CurrentSong}) {
         player.currentTime = parseInt(e.target.value);
         // setPlayerCurrentTime(parseInt(e.target.value));
         // player.oncanplay = function() {
-        //     player.currentTime = parseInt(e.target.value);
+            // player.currentTime = parseInt(e.target.value);
         // };
         console.log(player.currentTime );
         console.log("+-+-+-+-+");
@@ -92,7 +93,8 @@ export default function Player({Song,songs, setSong, CurrentSong}) {
 
     function pauseSong() {
         player.pause()
-        
+        setIsPlay(false);
+
     }
 
     function prevSong() {
@@ -218,8 +220,7 @@ export default function Player({Song,songs, setSong, CurrentSong}) {
                     <span><FontAwesomeIcon icon="step-backward" onClick={prevSong} /></span>
                     {/* <span><FontAwesomeIcon icon="undo-alt" onClick={reSong}/></span> */}
                     {/* <span><FontAwesomeIcon icon="angle-double-left" onClick={RemoveSeconds}/></span> */}
-                    <span><FontAwesomeIcon onClick={pauseSong} icon="pause"/></span>
-                    <span className="play-button"><FontAwesomeIcon onClick={playSong} icon="play"/></span>
+                    <span> {isPlay?<FontAwesomeIcon onClick={pauseSong} icon="pause"/>:<FontAwesomeIcon onClick={playSong} icon="play"/>} </span>
                     {/* <span><FontAwesomeIcon icon="stop" onClick={stopSong}/></span> */}
                     {/* <span><FontAwesomeIcon icon="angle-double-right" onClick={AddSeconds}/></span> */}
                     <span><FontAwesomeIcon icon="step-forward" onClick={nextSong} /></span>
