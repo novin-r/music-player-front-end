@@ -39,22 +39,12 @@ export default function Player({Song,songs, setSong, CurrentSong,player, isPlay,
     const [playerCurrentTime, setPlayerCurrentTime] = useState();
     const [progressBar, setProgressBar] = useState(0);
 
-    player.onloadedmetadata = (e) => {
-        if (player.readyState > 0) {
-            // setPlayerCurrentTime(player.currentTime);
-            // setplayerDuration(player.duration);
-
-        };
-    }
-
     const skipTrackHandler = async (direction) => {
         await console.log("Ok");
     };
 
     function playSong() {
         setIsPlay(true);
-
-        
         var playPromise = player.play();
 
         if (playPromise !== undefined) {
@@ -63,8 +53,6 @@ export default function Player({Song,songs, setSong, CurrentSong,player, isPlay,
                 console.log(error)
             });
         }
-
-
     }
 
 
