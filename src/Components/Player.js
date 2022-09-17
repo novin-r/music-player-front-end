@@ -26,11 +26,8 @@ import axios from "axios";
 import './style.css';
 
 library.add(faList, faStop, faAngleDoubleLeft, faAngleDoubleRight, faStepForward, faVolumeDown, faStepBackward, faUndoAlt, faVolumeOff, faVolumeMute, faVolumeUp, faCompactDisc, faPause, faPlay);
-const player = new Audio();
 
-export default function Player({Song,songs, setSong, CurrentSong}) {
-    // console.log(nextSong);
-
+export default function Player({Song,songs, setSong, CurrentSong,player, isPlay, setIsPlay}) {
     const [loading, setLoading] = useState(true);
     const [PlayerSettings, setPlayer] = useState({
         playing: true,
@@ -40,27 +37,14 @@ export default function Player({Song,songs, setSong, CurrentSong}) {
         volume_bar: true
     });
     const [playerCurrentTime, setPlayerCurrentTime] = useState();
-    // const [progressBar, setProgressBar] = useState(0);
-    let progressBar;
-    player.src="http://localhost:8000"+songs[Song].hash_key;
-
-    player.onloadedmetadata = (e) => {
-        if (player.readyState > 0) {
-            // setPlayerCurrentTime(player.currentTime);
-            // setplayerDuration(player.duration);
-
-        };
-    }
-       
-
-
-
+    const [progressBar, setProgressBar] = useState(0);
 
     const skipTrackHandler = async (direction) => {
         await console.log("Ok");
     };
 
     function playSong() {
+        setIsPlay(true);
         var playPromise = player.play();
 
         if (playPromise !== undefined) {
@@ -69,42 +53,36 @@ export default function Player({Song,songs, setSong, CurrentSong}) {
                 console.log(error)
             });
         }
-
     }
-
-
-
 
     function stopSong() {
         // player.pause()
         // player.currentTime = 0
     }
+
     function spolaMusic(e) {
         player.currentTime = parseInt(e.target.value);
         // setPlayerCurrentTime(parseInt(e.target.value));
         // player.oncanplay = function() {
-        //     player.currentTime = parseInt(e.target.value);
+            // player.currentTime = parseInt(e.target.value);
         // };
-        console.log(player.currentTime );
-        console.log("+-+-+-+-+");
-        console.log(e.target.value );
     }
 
     function pauseSong() {
         player.pause()
-        
+        setIsPlay(false);
     }
 
     function prevSong() {
         setSong(Song--);  
-    player.src="http://localhost:8000"+songs[Song].hash_key;
-    var playPromise = player.play()
-    if (playPromise !== undefined) {
-        playPromise.then(function () {
-        }).catch(function (error) {
-            console.log(error)
-        });
-    }
+        player.src="http://localhost:8000"+songs[Song].hash_key;
+        var playPromise = player.play()
+        if (playPromise !== undefined) {
+            playPromise.then(function () {
+            }).catch(function (error) {
+                console.log(error)
+            });
+        }
     }
     
     function nextSong() {
@@ -169,6 +147,11 @@ export default function Player({Song,songs, setSong, CurrentSong}) {
         player.volume = PlayerSettings.volume
     }
 
+    let playAndPauseButton = () =>{
+        return(
+            <span> {isPlay?<FontAwesomeIcon onClick={pauseSong} icon="pause"/>:<FontAwesomeIcon onClick={playSong} icon="play"/>} </span>
+        )
+    }
 
     useEffect(() => {
         setLoading(false);
@@ -181,7 +164,6 @@ export default function Player({Song,songs, setSong, CurrentSong}) {
             </div>
         </div>)
     }
-
 
     return (
         <div className="col-6 p-0">
@@ -216,12 +198,7 @@ export default function Player({Song,songs, setSong, CurrentSong}) {
                 </div>
                 <div className="player-buttons">
                     <span><FontAwesomeIcon icon="step-backward" onClick={prevSong} /></span>
-                    {/* <span><FontAwesomeIcon icon="undo-alt" onClick={reSong}/></span> */}
-                    {/* <span><FontAwesomeIcon icon="angle-double-left" onClick={RemoveSeconds}/></span> */}
-                    <span><FontAwesomeIcon onClick={pauseSong} icon="pause"/></span>
-                    <span className="play-button"><FontAwesomeIcon onClick={playSong} icon="play"/></span>
-                    {/* <span><FontAwesomeIcon icon="stop" onClick={stopSong}/></span> */}
-                    {/* <span><FontAwesomeIcon icon="angle-double-right" onClick={AddSeconds}/></span> */}
+                    {playAndPauseButton()}
                     <span><FontAwesomeIcon icon="step-forward" onClick={nextSong} /></span>
                     <span className="volume-logo"><FontAwesomeIcon icon={
                         (PlayerSettings.volume >= 1) ? "volume-up" : (PlayerSettings.volume < 1 && PlayerSettings.volume !== 0) ? "volume-down" : "volume-mute"
