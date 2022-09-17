@@ -180,12 +180,16 @@ export default function Player({Song,songs, setSong, CurrentSong,player, isPlay,
                         <span>
                             {convertTime(PlayerSettings.current_length)}
                         </span>
-                    <span>
-                    <input type="range" min="1" max="100" value={progressBar}  className={styles.slider} id="myRange" 
-                                onChange={(e)=>{ spolaMusic(e);}}
-                                // onMouseUp={props.onMouseUp}
-                                // onTouchEnd={props.onTouchEnd}
-                            />
+                    <span style={{width: "65%"}}>
+                    <div className={styles.range}>
+                        <input type="range" min="1" max="100" value={progressBar}  className={styles.slider} id="myRange" 
+                            onChange={(e)=>{ spolaMusic(e);}}
+                            // onMouseUp={props.onMouseUp}
+                            // onTouchEnd={props.onTouchEnd}
+                        />
+                    </div>
+
+                   
                         {/* <div className="track-progress">
                        
                             <div className="track-child"
