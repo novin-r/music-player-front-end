@@ -55,40 +55,34 @@ export default function Player({Song,songs, setSong, CurrentSong,player, isPlay,
         }
     }
 
-
-
-
     function stopSong() {
         // player.pause()
         // player.currentTime = 0
     }
+
     function spolaMusic(e) {
         player.currentTime = parseInt(e.target.value);
         // setPlayerCurrentTime(parseInt(e.target.value));
         // player.oncanplay = function() {
             // player.currentTime = parseInt(e.target.value);
         // };
-        console.log(player.currentTime );
-        console.log("+-+-+-+-+");
-        console.log(e.target.value );
     }
 
     function pauseSong() {
         player.pause()
         setIsPlay(false);
-
     }
 
     function prevSong() {
         setSong(Song--);  
-    player.src="http://localhost:8000"+songs[Song].hash_key;
-    var playPromise = player.play()
-    if (playPromise !== undefined) {
-        playPromise.then(function () {
-        }).catch(function (error) {
-            console.log(error)
-        });
-    }
+        player.src="http://localhost:8000"+songs[Song].hash_key;
+        var playPromise = player.play()
+        if (playPromise !== undefined) {
+            playPromise.then(function () {
+            }).catch(function (error) {
+                console.log(error)
+            });
+        }
     }
     
     function nextSong() {
@@ -159,7 +153,6 @@ export default function Player({Song,songs, setSong, CurrentSong,player, isPlay,
         )
     }
 
-
     useEffect(() => {
         setLoading(false);
     }, []);
@@ -171,7 +164,6 @@ export default function Player({Song,songs, setSong, CurrentSong,player, isPlay,
             </div>
         </div>)
     }
-
 
     return (
         <div className="col-6 p-0">
@@ -206,11 +198,7 @@ export default function Player({Song,songs, setSong, CurrentSong,player, isPlay,
                 </div>
                 <div className="player-buttons">
                     <span><FontAwesomeIcon icon="step-backward" onClick={prevSong} /></span>
-                    {/* <span><FontAwesomeIcon icon="undo-alt" onClick={reSong}/></span> */}
-                    {/* <span><FontAwesomeIcon icon="angle-double-left" onClick={RemoveSeconds}/></span> */}
                     {playAndPauseButton()}
-                    {/* <span><FontAwesomeIcon icon="stop" onClick={stopSong}/></span> */}
-                    {/* <span><FontAwesomeIcon icon="angle-double-right" onClick={AddSeconds}/></span> */}
                     <span><FontAwesomeIcon icon="step-forward" onClick={nextSong} /></span>
                     <span className="volume-logo"><FontAwesomeIcon icon={
                         (PlayerSettings.volume >= 1) ? "volume-up" : (PlayerSettings.volume < 1 && PlayerSettings.volume !== 0) ? "volume-down" : "volume-mute"

@@ -72,13 +72,6 @@ function Playlist() {
         axios.get('/api/song/latest').then(res => {
             if (res.data.status === 200) {
                 setCurrentSong(res.data.song);
-                //It don't do anything
-                // if( res.data.song != null){
-                //     setSong({
-                //         src:`http://localhost:8000${res.data.song.hash_key}`,
-                //         indexx: 0,
-                //     });
-                // }
                 setPlaylistLoading(false);
             }
         })
