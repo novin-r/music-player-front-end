@@ -26,11 +26,8 @@ import axios from "axios";
 import './style.css';
 
 library.add(faList, faStop, faAngleDoubleLeft, faAngleDoubleRight, faStepForward, faVolumeDown, faStepBackward, faUndoAlt, faVolumeOff, faVolumeMute, faVolumeUp, faCompactDisc, faPause, faPlay);
-// const player = new Audio();
 
-export default function Player({Song,songs, setSong, CurrentSong,player}) {
-    // console.log(nextSong);
-
+export default function Player({Song,songs, setSong, CurrentSong,player, isPlay, setIsPlay}) {
     const [loading, setLoading] = useState(true);
     const [PlayerSettings, setPlayer] = useState({
         playing: true,
@@ -40,10 +37,7 @@ export default function Player({Song,songs, setSong, CurrentSong,player}) {
         volume_bar: true
     });
     const [playerCurrentTime, setPlayerCurrentTime] = useState();
-    const [isPlay,setIsPlay] = useState(false);
     const [progressBar, setProgressBar] = useState(0);
-    // let progressBar;
-    // player.src="http://localhost:8000"+songs[Song].hash_key;
 
     player.onloadedmetadata = (e) => {
         if (player.readyState > 0) {

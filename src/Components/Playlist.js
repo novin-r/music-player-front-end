@@ -19,6 +19,7 @@ function Playlist() {
     const [Playlistloading, setPlaylistLoading] = useState(true);
     const [songs, setSongs] = useState([]);
     const [Song, setSong] = useState(0);
+    const [isPlay,setIsPlay] = useState(false);
 
     const [CurrentSong, setCurrentSong] = useState({
         name: '',
@@ -52,9 +53,10 @@ function Playlist() {
             image: songData.image,
         });
         setSong(index);
+        //Add music src here 
         player.src="http://localhost:8000"+songs[index].hash_key;
-        console.log("RRR:");
-        console.log(Player );
+        player.play();
+        setIsPlay(true);
 
     }
 
@@ -112,7 +114,7 @@ function Playlist() {
             {
                 localStorage.getItem('auth_token') ? 
                 <React.Fragment>
-                    <Player Song={Song} songs={songs} setSong={setSong} CurrentSong={CurrentSong} player={player} />
+                    <Player Song={Song} songs={songs} setSong={setSong} CurrentSong={CurrentSong} player={player} isPlay={isPlay} setIsPlay={setIsPlay} />
                     <div className="col-6 p-0">
                         <div className="main-playlist p-2">
                             <h6 className="text-center">
