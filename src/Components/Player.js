@@ -171,6 +171,12 @@ export default function Player({Song,songs, setSong, CurrentSong,player}) {
         player.volume = PlayerSettings.volume
     }
 
+    let playAndPauseButton = () =>{
+        return(
+            <span> {isPlay?<FontAwesomeIcon onClick={pauseSong} icon="pause"/>:<FontAwesomeIcon onClick={playSong} icon="play"/>} </span>
+        )
+    }
+
 
     useEffect(() => {
         setLoading(false);
@@ -220,7 +226,7 @@ export default function Player({Song,songs, setSong, CurrentSong,player}) {
                     <span><FontAwesomeIcon icon="step-backward" onClick={prevSong} /></span>
                     {/* <span><FontAwesomeIcon icon="undo-alt" onClick={reSong}/></span> */}
                     {/* <span><FontAwesomeIcon icon="angle-double-left" onClick={RemoveSeconds}/></span> */}
-                    <span> {isPlay?<FontAwesomeIcon onClick={pauseSong} icon="pause"/>:<FontAwesomeIcon onClick={playSong} icon="play"/>} </span>
+                    {playAndPauseButton()}
                     {/* <span><FontAwesomeIcon icon="stop" onClick={stopSong}/></span> */}
                     {/* <span><FontAwesomeIcon icon="angle-double-right" onClick={AddSeconds}/></span> */}
                     <span><FontAwesomeIcon icon="step-forward" onClick={nextSong} /></span>
