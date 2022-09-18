@@ -41,11 +41,12 @@
   .range input{
     -webkit-appearance:none;
     width: 100%;
-    height:4px;
+    height:6px;
     border-radius:5px;
     background-color:#7880cb;
     outline:none;
   }
+  
   .range input::-webkit-slider-thumb{
     -webkit-appearance:none;
     width:20px;
