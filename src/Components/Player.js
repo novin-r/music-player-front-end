@@ -180,12 +180,16 @@ export default function Player({Song,songs, setSong, CurrentSong,player, isPlay,
                         <span>
                             {convertTime(PlayerSettings.current_length)}
                         </span>
-                    <span>
-                    <input type="range" min="1" max="100" value={progressBar}  className={styles.slider} id="myRange" 
-                                onChange={(e)=>{ spolaMusic(e);}}
-                                // onMouseUp={props.onMouseUp}
-                                // onTouchEnd={props.onTouchEnd}
-                            />
+                    <span style={{width: "65%"}}>
+                    <div className={styles.range}>
+                        <input type="range" min="1" max="100" value={progressBar}  className={styles.slider} id="myRange" 
+                            onChange={(e)=>{ spolaMusic(e);}}
+                            // onMouseUp={props.onMouseUp}
+                            // onTouchEnd={props.onTouchEnd}
+                        />
+                    </div>
+
+                   
                         {/* <div className="track-progress">
                        
                             <div className="track-child"
@@ -200,15 +204,11 @@ export default function Player({Song,songs, setSong, CurrentSong,player, isPlay,
                     <span><FontAwesomeIcon icon="step-backward" onClick={prevSong} /></span>
                     {playAndPauseButton()}
                     <span><FontAwesomeIcon icon="step-forward" onClick={nextSong} /></span>
-                    <span className="volume-logo"><FontAwesomeIcon icon={
-                        (PlayerSettings.volume >= 1) ? "volume-up" : (PlayerSettings.volume < 1 && PlayerSettings.volume !== 0) ? "volume-down" : "volume-mute"
-                    } onClick={toggleVolume} />
-                    <span className="volume-container">
-                        <input type="range" min="1" max="100" value={PlayerSettings.volume * 100} className="slider"
-                               onChange={handleVolume}
-                               style={{width: '69px', position: 'absolute',top: '-9px',left: '-27px',right: '0'}}
-                        />
-                    </span>
+                    <span  className={styles.range}>
+                            <input type="range" min="1" max="100" value={PlayerSettings.volume * 100} 
+                            className={styles.volymRange}
+                            onChange={handleVolume}
+                            />
                     </span>
                 </div>
             </div>
