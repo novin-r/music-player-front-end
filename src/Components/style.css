@@ -25,16 +25,7 @@
         width: 100% !important;
     }
 
-    .svg-background {
-        background-image: none;
-        min-height: 95vh;
-    }
-
-    .musicoker-container{
-        width: 100% !important;
-        border-radius: 5px !important;
-
-    }
+ 
     .main-playlist {
         height: 100%;
         border-left: none;
