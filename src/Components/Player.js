@@ -169,16 +169,16 @@ export default function Player({Song,songs, setSong, CurrentSong,player, isPlay,
         <div>
             <div className="main-player p-2">
                 <section className={styles.music_info_sec}>
-                    <div className="music-image">
-                        <img src={CurrentSong.image ? `http://localhost:8000` + CurrentSong.image : DefaultImg} alt=""/>
+                    <div className={styles.music_image}>
+                        <img src={CurrentSong.image ? `http://localhost:8000` + CurrentSong.image : DefaultImg} alt="" />
                     </div>
-                    <div className="music-info">
+                    <div className={styles.music_info}>
                         <h5 className="m-0">{CurrentSong.name.replace(/\.[^/.]+$/, "")}</h5>
                         <p>{CurrentSong.album_artist}</p>
                     </div>
                 </section>
-           
-                <div className="music-progress">
+                <section>
+                    <div className="music-progress">
                         <span>
                             {convertTime(PlayerSettings.current_length)}
                         </span>
@@ -201,18 +201,21 @@ export default function Player({Song,songs, setSong, CurrentSong,player, isPlay,
                     <span>
                             {CurrentSong.length.replace(/\.[^/.]+$/, "")}
                         </span>
-                </div>
-                <div className="player-buttons">
-                    <span><FontAwesomeIcon icon="step-backward" onClick={prevSong} /></span>
-                    {playAndPauseButton()}
-                    <span><FontAwesomeIcon icon="step-forward" onClick={nextSong} /></span>
-                    <span  className={styles.range}>
-                            <input type="range" min="1" max="100" value={PlayerSettings.volume * 100} 
-                            className={styles.volymRange}
-                            onChange={handleVolume}
-                            />
-                    </span>
-                </div>
+                    </div>
+                    <div className="player-buttons">
+                        <span><FontAwesomeIcon icon="step-backward" onClick={prevSong} /></span>
+                        {playAndPauseButton()}
+                        <span><FontAwesomeIcon icon="step-forward" onClick={nextSong} /></span>
+                        <span  className={styles.range}>
+                                <input type="range" min="1" max="100" value={PlayerSettings.volume * 100} 
+                                className={styles.volymRange}
+                                onChange={handleVolume}
+                                />
+                        </span>
+                    </div>
+                </section>
+           
+              
             </div>
         </div>
 );

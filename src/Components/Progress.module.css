@@ -58,8 +58,28 @@
   .music_info_sec{
     display: flex;
     width: 100%;
-    justify-content: space-between;
     height: 50%;
+  }
+
+  .music_image{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 12px;
+    width: 10%;
+  }
+
+  .music_image img{
+    border-radius: 50%;
+    width: auto;
+    height: 100%;
+  }
+
+  .music_info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   
   @media only screen and (max-width: 400px) {

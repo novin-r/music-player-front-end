@@ -8,7 +8,7 @@ function MainPlayer() {
         <>
             <div>
                 <div className="musicoker-container">
-                    <div className="row">
+                    <div className="player_row">
                         <Playlist/>
                     </div>
                 </div>
