@@ -166,16 +166,18 @@ export default function Player({Song,songs, setSong, CurrentSong,player, isPlay,
     }
 
     return (
-        <div className="col-6 p-0">
+        <div>
             <div className="main-player p-2">
-                <div className="music-image">
-                    <img src={CurrentSong.image ? `http://localhost:8000` + CurrentSong.image : DefaultImg} alt=""/>
-                    <img src={CurrentSong.image ? `http://localhost:8000` + CurrentSong.image : DefaultImg} alt=""/>
-                </div>
-                <div className="music-info">
-                    <h5 className="m-0">{CurrentSong.name.replace(/\.[^/.]+$/, "")}</h5>
-                    <p>{CurrentSong.album_artist}</p>
-                </div>
+                <section className={styles.music_info_sec}>
+                    <div className="music-image">
+                        <img src={CurrentSong.image ? `http://localhost:8000` + CurrentSong.image : DefaultImg} alt=""/>
+                    </div>
+                    <div className="music-info">
+                        <h5 className="m-0">{CurrentSong.name.replace(/\.[^/.]+$/, "")}</h5>
+                        <p>{CurrentSong.album_artist}</p>
+                    </div>
+                </section>
+           
                 <div className="music-progress">
                         <span>
                             {convertTime(PlayerSettings.current_length)}
