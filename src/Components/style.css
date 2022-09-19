@@ -25,14 +25,6 @@
         width: 100% !important;
     }
 
- 
-    .main-playlist {
-        height: 100%;
-        border-left: none;
-    }
-
-
-
     .main-player .music-progress .track-progress {
         width: 240px;
     }

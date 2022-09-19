@@ -206,7 +206,7 @@ export default function Player({Song,songs, setSong, CurrentSong,player, isPlay,
                         <span><FontAwesomeIcon icon="step-backward" onClick={prevSong} /></span>
                         {playAndPauseButton()}
                         <span><FontAwesomeIcon icon="step-forward" onClick={nextSong} /></span>
-                        <span  className={styles.range}>
+                        <span  className={`VRange ${styles.range}`}>
                                 <input type="range" min="1" max="100" value={PlayerSettings.volume * 100} 
                                 className={styles.volymRange}
                                 onChange={handleVolume}

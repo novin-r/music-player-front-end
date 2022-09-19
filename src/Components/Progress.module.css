@@ -86,5 +86,15 @@
     .container {
       margin: 40px 0;
     }
+
+    .music_image img{
+      height: 70%;
+    }
+
+    .music_info{
+      font-size: 1.02rem;
+    }
+  
+
   }
   
