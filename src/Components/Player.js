@@ -76,27 +76,11 @@ export default function Player({Song,songs, setSong,PlayNow, CurrentSong,player,
     function prevSong() {
         setSong(Song--);  
         PlayNow(Song);
-        player.src="http://localhost:8000"+songs[Song].hash_key;
-        var playPromise = player.play()
-        if (playPromise !== undefined) {
-            playPromise.then(function () {
-            }).catch(function (error) {
-                console.log(error)
-            });
-        }
     }
     
     function nextSong() {
         setSong(Song++);
         PlayNow(Song);
-        player.src="http://localhost:8000"+songs[Song].hash_key;
-        var playPromise = player.play()
-        if (playPromise !== undefined) {
-            playPromise.then(function () {
-            }).catch(function (error) {
-                console.log(error)
-            });
-        }
     }
 
     function AddSeconds() {
