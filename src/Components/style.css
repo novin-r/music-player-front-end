@@ -25,34 +25,13 @@
         width: 100% !important;
     }
 
-    .svg-background {
-        background-image: none;
-        min-height: 95vh;
-    }
-
-    .musicoker-container{
-        width: 100% !important;
-        border-radius: 5px !important;
-
-    }
-    .main-playlist {
-        height: 100%;
-        border-left: none;
-    }
-
-    /* Player image and stuff */
-    .main-player .music-image {
-        left: 0;
-        right: 0;
-    }
-
     .main-player .music-progress .track-progress {
-        width: 240px;
+        width: 100%;
     }
     .main-player .music-progress {
         left: 0;
         right: 0;
-        width: 85%;
+        width: 100%;
        
     }
     .main-player .player-buttons {

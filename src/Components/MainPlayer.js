@@ -6,9 +6,9 @@ import './style.css';
 function MainPlayer() {
     return (
         <>
-            <div className="svg-background">
+            <div>
                 <div className="musicoker-container">
-                    <div className="row">
+                    <div className="player_row">
                         <Playlist/>
                     </div>
                 </div>
