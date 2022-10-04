@@ -26,12 +26,12 @@
     }
 
     .main-player .music-progress .track-progress {
-        width: 240px;
+        width: 100%;
     }
     .main-player .music-progress {
         left: 0;
         right: 0;
-        width: 85%;
+        width: 100%;
        
     }
     .main-player .player-buttons {

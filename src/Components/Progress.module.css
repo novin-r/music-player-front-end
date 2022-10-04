@@ -82,6 +82,10 @@
     justify-content: center;
   }
   
+  .rangeSection{
+    width: 85%;
+  }
+
   @media only screen and (max-width: 400px) {
     .container {
       margin: 40px 0;
@@ -94,7 +98,9 @@
     .music_info{
       font-size: 1.02rem;
     }
-  
+    .rangeSection{
+      width: 65%;
+    }
 
   }
   

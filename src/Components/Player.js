@@ -182,7 +182,7 @@ export default function Player({Song,songs, setSong, CurrentSong,player, isPlay,
                         <span>
                             {convertTime(PlayerSettings.current_length)}
                         </span>
-                    <span style={{width: "65%"}}>
+                    <span className={styles.rangeSection} >
                     <div className={styles.range}>
                         <input type="range" min="1" max="100" value={progressBar}  className={styles.slider} id="myRange" 
                             onChange={(e)=>{ spolaMusic(e);}}
