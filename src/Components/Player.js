@@ -27,7 +27,7 @@ import './style.css';
 
 library.add(faList, faStop, faAngleDoubleLeft, faAngleDoubleRight, faStepForward, faVolumeDown, faStepBackward, faUndoAlt, faVolumeOff, faVolumeMute, faVolumeUp, faCompactDisc, faPause, faPlay);
 
-export default function Player({Song,songs, setSong, CurrentSong,player, isPlay, setIsPlay}) {
+export default function Player({Song,songs, setSong,PlayNow, CurrentSong,player, isPlay, setIsPlay}) {
     const [loading, setLoading] = useState(true);
     const [PlayerSettings, setPlayer] = useState({
         playing: true,
@@ -75,26 +75,12 @@ export default function Player({Song,songs, setSong, CurrentSong,player, isPlay,
 
     function prevSong() {
         setSong(Song--);  
-        player.src="http://localhost:8000"+songs[Song].hash_key;
-        var playPromise = player.play()
-        if (playPromise !== undefined) {
-            playPromise.then(function () {
-            }).catch(function (error) {
-                console.log(error)
-            });
-        }
+        PlayNow(Song);
     }
     
     function nextSong() {
         setSong(Song++);
-        player.src="http://localhost:8000"+songs[Song].hash_key;
-        var playPromise = player.play()
-        if (playPromise !== undefined) {
-            playPromise.then(function () {
-            }).catch(function (error) {
-                console.log(error)
-            });
-        }
+        PlayNow(Song);
     }
 
     function AddSeconds() {
