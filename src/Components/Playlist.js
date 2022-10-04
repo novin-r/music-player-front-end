@@ -17,7 +17,9 @@ function Playlist() {
     const PlaylistSongs = useRef({});
 
     const [Playlistloading, setPlaylistLoading] = useState(true);
+    //Array of all music
     const [songs, setSongs] = useState([]);
+    //index of music
     const [Song, setSong] = useState(0);
     const [isPlay,setIsPlay] = useState(false);
 
@@ -57,7 +59,6 @@ function Playlist() {
         player.src="http://localhost:8000"+songs[index].hash_key;
         player.play();
         setIsPlay(true);
-
     }
 
     useEffect(() => {
@@ -85,8 +86,6 @@ function Playlist() {
             </div>
         </div>)
     } else {
-        console.log("-+-");
-        console.log(songs);
         display_playlist = songs.map((song, index) => {
             return (
                 <li key={song.id} onClick={() => PlayNow(index)} ref={el => (PlaylistSongs.current[index] = el)}
@@ -118,7 +117,7 @@ function Playlist() {
                             </div>
                         </div>
                     </div>
-                    <Player Song={Song} songs={songs} setSong={setSong} CurrentSong={CurrentSong} player={player} isPlay={isPlay} setIsPlay={setIsPlay} />
+                    <Player Song={Song} songs={songs} setSong={setSong} PlayNow={PlayNow} CurrentSong={CurrentSong} player={player} isPlay={isPlay} setIsPlay={setIsPlay} />
  
             </>: <div>Log In First</div>
             }
