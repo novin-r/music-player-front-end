@@ -269,8 +269,17 @@ li {
 .player_row {
   height: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+
+}
+
+.player_row > div {
+  width: 100%;
+}
+
+.playlist_section {
+  box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+  width: 20%;
+  height: 100%;
 }
 
 @media only screen and (max-width: 400px) {

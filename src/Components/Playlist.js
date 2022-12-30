@@ -105,7 +105,7 @@ function Playlist() {
         <React.Fragment>
             {
                 localStorage.getItem('auth_token') ? 
-                <>
+                <div>
                     <div>
                         <div className="main-playlist p-2">
                             <h6 className="text-center">
@@ -119,7 +119,7 @@ function Playlist() {
                     </div>
                     <Player Song={Song} songs={songs} setSong={setSong} PlayNow={PlayNow} CurrentSong={CurrentSong} player={player} isPlay={isPlay} setIsPlay={setIsPlay} />
  
-            </>: <div>Log In First</div>
+            </div>: <div>Log In First</div>
             }
         
         </React.Fragment>
