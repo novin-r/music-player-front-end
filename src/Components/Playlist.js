@@ -109,7 +109,7 @@ function Playlist() {
                     <div>
                         <div className="main-playlist p-2">
                             <h6 className="text-center">
-                                <FontAwesomeIcon icon="list"/>&nbsp;Playlist</h6>
+                                <FontAwesomeIcon icon="list"/>&nbsp;Songs</h6>
                             <div className="playlist-list">
                                 <ul className="playlist-list-content">
                                     {display_playlist ?? ""}

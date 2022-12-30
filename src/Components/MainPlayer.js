@@ -1,5 +1,4 @@
 import React from "react";
-import Player from "./Player";
 import Playlist from "./Playlist";
 import './style.css';
 
