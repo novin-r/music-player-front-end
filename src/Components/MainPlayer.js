@@ -7,6 +7,9 @@ const axios = require('axios');
 function MainPlayer() {
     //all playlists
     const [playlists, setPlaylists] = useState([]);
+    //selected playlist
+    const [selectedPlaylisted, setselectePlaylist] = useState();
+
     //Array of all music
     const [songs, setSongs] = useState([]);
     const [playlistid, setPlaylistid] = useState();
@@ -45,10 +48,10 @@ function MainPlayer() {
                         <section className="playlist_section">
                             <div className="create_new_playlist">Create New Playlist</div>
                             {playlists.map((item) => (
-                                <PlayListSec key={item.id} playlist={item.playListName} playlistId={item.id} setPlaylistid={setPlaylistid} />
+                                <PlayListSec key={item.id} playlist={item.playListName} playlistId={item.id} setPlaylistid={setPlaylistid} setselectePlaylist={setselectePlaylist} />
                             ))}
                         </section>
-                        <Playlist songs={songs}  />
+                        <Playlist songs={songs} selectedPlaylisted={selectedPlaylisted} />
                     </div>
                 </div>
             </div>

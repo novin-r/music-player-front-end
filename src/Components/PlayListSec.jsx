@@ -1,10 +1,11 @@
 import React, {useState} from 'react'
 import styles from "./PlaylistSec.module.css";
 
-function PlayListSec({playlist,playlistId ,setPlaylistid}) {
+function PlayListSec({playlist,playlistId ,setPlaylistid, setselectePlaylist}) {
 
     const handleClick = () => {
         setPlaylistid(playlistId);
+        setselectePlaylist(playlist);
     };
 
   return (
