@@ -1,11 +1,14 @@
 import React, {useState} from 'react'
 import styles from "./PlaylistSec.module.css";
 
-function PlayListSec({playlist,playlistId}) {
-    const [playlistid, setPlaylistid] = useState(playlistId);
+function PlayListSec({playlist,playlistId ,setPlaylistid}) {
+
+    const handleClick = () => {
+        setPlaylistid(playlistId);
+    };
 
   return (
-    <div  className={styles.playlist}>{playlist}</div>
+    <div  className={styles.playlist} onClick={handleClick}>{playlist}</div>
   )
 }
 

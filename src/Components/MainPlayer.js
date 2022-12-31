@@ -5,9 +5,14 @@ import './style.css';
 const axios = require('axios');
 
 function MainPlayer() {
+    //all playlists
     const [playlists, setPlaylists] = useState([]);
+    //Array of all music
+    const [songs, setSongs] = useState([]);
+    const [playlistid, setPlaylistid] = useState();
 
 
+    //fetch all playlists
     useEffect(() => {
         axios.get('/api/playlists').then(res => {
             if (res.data.status === 200) {
@@ -16,7 +21,20 @@ function MainPlayer() {
         });
     }, []);
 
+    useEffect(() => {
+        axios.get('/api/playlist/songs/'+playlistid).then(res => {
+            setSongs(res.data);
+        });
+    },[playlistid]);
 
+    // If u want to fetch all the musics
+    // useEffect(() => {
+    //     axios.get('/api/songs').then(res => {
+    //         if (res.data.status === 200) {
+    //             setSongs(res.data.songs);
+    //         }
+    //     });
+    // }, []);
 
 
     return (
@@ -27,10 +45,10 @@ function MainPlayer() {
                         <section className="playlist_section">
                             <div className="create_new_playlist">Create New Playlist</div>
                             {playlists.map((item) => (
-                                <PlayListSec key={item.id} playlist={item.playListName} playlistId={item.id} />
+                                <PlayListSec key={item.id} playlist={item.playListName} playlistId={item.id} setPlaylistid={setPlaylistid} />
                             ))}
                         </section>
-                        <Playlist/>
+                        <Playlist songs={songs}  />
                     </div>
                 </div>
             </div>

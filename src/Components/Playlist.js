@@ -13,12 +13,10 @@ const axios = require('axios');
 const player = new Audio();
 
 
-function Playlist() {
+function Playlist({songs}) {
     const PlaylistSongs = useRef({});
 
     const [Playlistloading, setPlaylistLoading] = useState(true);
-    //Array of all music
-    const [songs, setSongs] = useState([]);
     //index of music
     const [Song, setSong] = useState(0);
     const [isPlay,setIsPlay] = useState(false);
@@ -61,14 +59,8 @@ function Playlist() {
         setIsPlay(true);
     }
 
-    useEffect(() => {
-        axios.get('/api/songs').then(res => {
-            if (res.data.status === 200) {
-                setSongs(res.data.songs);
-            }
-        });
 
-    }, []);
+    
     useEffect(()=>{
         axios.get('/api/song/latest').then(res => {
             if (res.data.status === 200) {
