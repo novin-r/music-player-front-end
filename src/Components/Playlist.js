@@ -55,7 +55,7 @@ function Playlist() {
             image: songData.image,
         });
         setSong(index);
-        //Add music src here 
+        //Add music src  
         player.src="http://localhost:8000"+songs[index].hash_key;
         player.play();
         setIsPlay(true);

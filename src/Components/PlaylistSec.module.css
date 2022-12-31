@@ -1,0 +1,8 @@
+.playlist{
+    width: 80%;
+    margin: auto;
+    padding: 8px;
+    font-weight: bold;
+    border-bottom: 2px solid black;
+    cursor: pointer;
+}

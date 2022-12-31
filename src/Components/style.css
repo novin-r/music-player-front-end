@@ -62,3 +62,14 @@
     }
 
 }
+
+.create_new_playlist{
+    width: 80%;
+    margin-top: 15px !important;
+    margin: auto;
+    padding: 8px;
+    font-weight: bold;
+    border: 2px solid black;
+    cursor: pointer;
+    text-align: center;
+}
