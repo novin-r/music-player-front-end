@@ -31,6 +31,10 @@ function MainPlayer() {
         });
     }, []);
 
+    const handlePlaylistPlay = (id) => {
+        axios.put(`/api/playlists/${id}/last-listened`)
+    };
+
     useEffect(() => {
         axios.get('/api/playlist/songs/'+playlistid).then(res => {
             setSongs(res.data);
@@ -88,7 +92,14 @@ function MainPlayer() {
                         <section className="playlist_section">
                             <div className="create_new_playlist" onClick={handleOpenCreatePlaylist} >Create New Playlist</div>
                             {playlists.map((item) => (
-                                <PlayListSec key={item.id} playlist={item.playListName} playlistId={item.id} setPlaylistid={setPlaylistid} setselectePlaylist={setselectePlaylist} />
+                                <PlayListSec 
+                                    key={item.id} 
+                                    playlist={item.playListName} 
+                                    playlistId={item.id} 
+                                    setPlaylistid={setPlaylistid} 
+                                    setselectePlaylist={setselectePlaylist}
+                                    onPlay={() => handlePlaylistPlay(item.id)}
+                                />
                             ))}
 
                             <Modal className="createplaylistmodal" open={openCreatePlaylist} onClose={handleCloseCreatePlaylist}>
