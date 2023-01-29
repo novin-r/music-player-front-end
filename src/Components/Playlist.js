@@ -13,12 +13,10 @@ const axios = require('axios');
 const player = new Audio();
 
 
-function Playlist() {
+function Playlist({songs,selectedPlaylisted}) {
     const PlaylistSongs = useRef({});
 
     const [Playlistloading, setPlaylistLoading] = useState(true);
-    //Array of all music
-    const [songs, setSongs] = useState([]);
     //index of music
     const [Song, setSong] = useState(0);
     const [isPlay,setIsPlay] = useState(false);
@@ -55,20 +53,14 @@ function Playlist() {
             image: songData.image,
         });
         setSong(index);
-        //Add music src here 
+        //Add music src  
         player.src="http://localhost:8000"+songs[index].hash_key;
         player.play();
         setIsPlay(true);
     }
 
-    useEffect(() => {
-        axios.get('/api/songs').then(res => {
-            if (res.data.status === 200) {
-                setSongs(res.data.songs);
-            }
-        });
 
-    }, []);
+    
     useEffect(()=>{
         axios.get('/api/song/latest').then(res => {
             if (res.data.status === 200) {
@@ -105,11 +97,11 @@ function Playlist() {
         <React.Fragment>
             {
                 localStorage.getItem('auth_token') ? 
-                <>
+                <div>
                     <div>
                         <div className="main-playlist p-2">
                             <h6 className="text-center">
-                                <FontAwesomeIcon icon="list"/>&nbsp;Playlist</h6>
+                                <FontAwesomeIcon icon="list"/>&nbsp;{selectedPlaylisted}</h6>
                             <div className="playlist-list">
                                 <ul className="playlist-list-content">
                                     {display_playlist ?? ""}
@@ -119,7 +111,7 @@ function Playlist() {
                     </div>
                     <Player Song={Song} songs={songs} setSong={setSong} PlayNow={PlayNow} CurrentSong={CurrentSong} player={player} isPlay={isPlay} setIsPlay={setIsPlay} />
  
-            </>: <div>Log In First</div>
+            </div>: <div>Log In First</div>
             }
         
         </React.Fragment>
