@@ -13,14 +13,13 @@ function PlayListSec({playlist,playlistId ,setPlaylistid, setselectePlaylist, on
     <>
       <li onClick={handleClick}>
         <div className={styles.card__header}>
-          <img className={styles.card__thumb} src="https://i.imgur.com/7D7I6dI.png" alt="" />
+          <img className={styles.card__thumb} src="http://localhost:3000/static/media/default.82d306f1.jpg" alt="" />
           <div className={styles.card__header}>
             <h3 className={styles.card__title}>{playlist}</h3>          
           </div>
         </div>
       </li>
     </>
-    // <div  className={styles.playlist} onClick={handleClick}>{playlist}</div>
   )
 }
 

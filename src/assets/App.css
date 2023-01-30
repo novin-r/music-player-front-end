@@ -161,6 +161,7 @@ li {
   margin: 0 10px 0 0;
 }
 .home-footer {
+  background-color: black;
   bottom: 0;
   position: fixed;
   width: 100%;

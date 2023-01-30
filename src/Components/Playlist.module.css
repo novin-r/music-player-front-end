@@ -24,7 +24,6 @@ a {
     display: flex;
     align-items: center;
     gap: 1em;
-    padding: 2em;
     border-radius: 40px 4px;    
     background-color: rgb(166, 161, 167);
   }
