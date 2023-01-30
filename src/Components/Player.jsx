@@ -42,7 +42,7 @@ library.add(
   faPlay
 );
 
-export default function Player({Song, songs, setSong, PlayNow, CurrentSong, player, isPlay, setIsPlay,}) {
+export default function Player({Song, songs, setSong, PlayNow, CurrentSong, player, isPlay, setIsPlay}) {
   const [loading, setLoading] = useState(true);
   const [PlayerSettings, setPlayer] = useState({
     playing: true,

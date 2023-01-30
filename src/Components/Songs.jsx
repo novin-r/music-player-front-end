@@ -10,56 +10,10 @@ import './style.css';
 
 library.add(faList);
 const axios = require('axios');
-const player = new Audio();
 
 
-function Playlist({songs,selectedPlaylisted}) {
-    const PlaylistSongs = useRef({});
-
+function Songs({songs,selectedPlaylisted,PlaylistSongs, PlayNow, setCurrentSong}) {
     const [Playlistloading, setPlaylistLoading] = useState(true);
-    //index of music
-    const [Song, setSong] = useState(0);
-    const [isPlay,setIsPlay] = useState(false);
-
-    const [CurrentSong, setCurrentSong] = useState({
-        name: '',
-        id: '',
-        hash_key: '',
-        album: '',
-        album_artist: '',
-        length: '',
-        current_length: '',
-        image: '',
-        size: '',
-        playedTime: 0,
-        song: '',
-    });
-
-
-    const PlayNow = (index) => {
-        let songData = PlaylistSongs.current[index].dataset;
-
-        let allList = document.querySelectorAll('.playlist-list-content li');
-        for (let x = 0; x < allList.length; x++)
-            allList[x].style.backgroundColor = "transparent";
-
-        PlaylistSongs.current[index].style.background = '#4b4b8963'
-
-        setCurrentSong({
-            ...CurrentSong,
-            name: document.querySelectorAll('.playlist-list-content li')[index].childNodes[1].childNodes[0].textContent,
-            album_artist: document.querySelectorAll('.playlist-list-content li')[index].childNodes[1].childNodes[1].textContent,
-            length: document.querySelectorAll('.playlist-list-content li')[index].childNodes[2].textContent,
-            image: songData.image,
-        });
-        setSong(index);
-        //Add music src  
-        player.src="http://localhost:8000"+songs[index].hash_key;
-        player.play();
-        setIsPlay(true);
-    }
-
-
     
     useEffect(()=>{
         axios.get('/api/song/latest').then(res => {
@@ -94,7 +48,7 @@ function Playlist({songs,selectedPlaylisted}) {
     }
 
     return (
-        <React.Fragment>
+        <>
             {
                 localStorage.getItem('auth_token') ? 
                 <div>
@@ -108,14 +62,12 @@ function Playlist({songs,selectedPlaylisted}) {
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                    <Player Song={Song} songs={songs} setSong={setSong} PlayNow={PlayNow} CurrentSong={CurrentSong} player={player} isPlay={isPlay} setIsPlay={setIsPlay} />
- 
+                    </div> 
             </div>: <div>Log In First</div>
             }
         
-        </React.Fragment>
+        </>
     );
 }
 
-export default Playlist;
+export default Songs;

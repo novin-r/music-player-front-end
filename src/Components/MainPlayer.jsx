@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import Playlist from "./Playlist";
+import Songs from "./Songs";
 import PlayListSec from "./PlayListSec";
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
@@ -8,7 +8,7 @@ import './style.css';
 const axios = require('axios');
 
 
-function MainPlayer() {
+function MainPlayer({setSongs, songs, PlaylistSongs,PlayNow, setCurrentSong}) {
     //all playlists
     const [playlists, setPlaylists] = useState([]);
     //selected playlist
@@ -17,8 +17,7 @@ function MainPlayer() {
     const [openCreatePlaylist, setOpenCreatePlaylist] = useState(false);
     const [inputValue, setInputValue] = useState('');
 
-    //Array of all music
-    const [songs, setSongs] = useState([]);
+    
     const [playlistid, setPlaylistid] = useState();
 
 
@@ -87,7 +86,6 @@ function MainPlayer() {
     return (
         <>
             <div>
-                <div className="musicoker-container">
                     <div className="player_row">
                         <section className="playlist_section">
                             <div className="create_new_playlist" onClick={handleOpenCreatePlaylist} >Create New Playlist</div>
@@ -117,9 +115,8 @@ function MainPlayer() {
                             </Modal>
 
                         </section>
-                        <Playlist songs={songs} selectedPlaylisted={selectedPlaylisted} />
+                        <Songs songs={songs} selectedPlaylisted={selectedPlaylisted} PlaylistSongs={PlaylistSongs} PlayNow={PlayNow} setCurrentSong={setCurrentSong} />
                     </div>
-                </div>
             </div>
         </>
     );
