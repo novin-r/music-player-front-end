@@ -34,6 +34,9 @@ function App() {
     const [isPlay,setIsPlay] = useState(false);
     //Array of all music
     const [songs, setSongs] = useState([]);
+    //selected playlist
+    const [selectedPlaylisted, setselectePlaylist] = useState();
+    const [playlistid, setPlaylistid] = useState();
 
     const [CurrentSong, setCurrentSong] = useState({
         name: '',
@@ -79,8 +82,8 @@ function App() {
             <BrowserRouter>
                 <Header/>
                     <Routes>
-                        <Route exact path="/" element={<Home/>}/>
-                        <Route exact path="/songs" element={<MainPlayer PlaylistSongs={PlaylistSongs} songs={songs} setSongs={setSongs} PlayNow={PlayNow} setCurrentSong={setCurrentSong} />}/>
+                        <Route exact path="/" element={<Home setPlaylistid={setPlaylistid} setselectePlaylist={setselectePlaylist} />}/>
+                        <Route exact path="/songs" element={<MainPlayer PlaylistSongs={PlaylistSongs} playlistid={playlistid} selectedPlaylisted={selectedPlaylisted} songs={songs} setSongs={setSongs} PlayNow={PlayNow} setCurrentSong={setCurrentSong} />}/>
 
                         <Route path="/login" element={localStorage.getItem('auth_token') ? <Navigate to='/'/>  : <Login/> }/>
                         <Route path="/register" element={localStorage.getItem('auth_token') ? <Navigate to='/'/>  : <Register/> }/>

@@ -2,10 +2,11 @@ import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import Songs from './Songs';
 import styles from "./Playlist.module.css";
+import PlayListSec from './PlayListSec';
 
 const axios = require('axios');
 
-const Playlist = () => {
+const Playlist = ({setPlaylistid, setselectePlaylist}) => {
     //all playlists
     const [playlists, setPlaylists] = useState([]);
 
@@ -26,16 +27,15 @@ const Playlist = () => {
     return (
         <ul className={styles.cards}>
             {playlists.map(playlist => (
-                //i want to have div, and link them to Songs component 
                 <Link key={playlist.id} to={`./songs`}>
-                    <li>
-                        <div className={styles.card__header}>
-                            <img className={styles.card__thumb} src="https://i.imgur.com/7D7I6dI.png" alt="" />
-                            <div className={styles.card__header}>
-                                <h3 className={styles.card__title}>{playlist.playListName}</h3>            
-                            </div>
-                        </div>
-                    </li>
+                    <PlayListSec 
+                        key={playlist.id} 
+                        playlist={playlist.playListName} 
+                        playlistId={playlist.id} 
+                        setPlaylistid={setPlaylistid} 
+                        setselectePlaylist={setselectePlaylist}
+                        onPlay={() => handlePlaylistPlay(playlist.id)}
+                    />
                 </Link>
 
             ))}

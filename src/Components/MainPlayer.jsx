@@ -8,31 +8,29 @@ import './style.css';
 const axios = require('axios');
 
 
-function MainPlayer({setSongs, songs, PlaylistSongs,PlayNow, setCurrentSong}) {
+function MainPlayer({setSongs, songs, PlaylistSongs,PlayNow, setCurrentSong, selectedPlaylisted, playlistid}) {
     //all playlists
-    const [playlists, setPlaylists] = useState([]);
-    //selected playlist
-    const [selectedPlaylisted, setselectePlaylist] = useState();
+    // const [playlists, setPlaylists] = useState([]);
 
     const [openCreatePlaylist, setOpenCreatePlaylist] = useState(false);
     const [inputValue, setInputValue] = useState('');
 
     
-    const [playlistid, setPlaylistid] = useState();
+    
 
 
     //fetch all playlists
-    useEffect(() => {
-        axios.get('/api/playlists').then(res => {
-            if (res.data.status === 200) {
-                setPlaylists(res.data.playlists);
-            }
-        });
-    }, []);
+    // useEffect(() => {
+    //     axios.get('/api/playlists').then(res => {
+    //         if (res.data.status === 200) {
+    //             setPlaylists(res.data.playlists);
+    //         }
+    //     });
+    // }, []);
 
-    const handlePlaylistPlay = (id) => {
-        axios.put(`/api/playlists/${id}/last-listened`)
-    };
+    // const handlePlaylistPlay = (id) => {
+    //     axios.put(`/api/playlists/${id}/last-listened`)
+    // };
 
     useEffect(() => {
         axios.get('/api/playlist/songs/'+playlistid).then(res => {
@@ -89,7 +87,7 @@ function MainPlayer({setSongs, songs, PlaylistSongs,PlayNow, setCurrentSong}) {
                     <div className="player_row">
                         <section className="playlist_section">
                             <div className="create_new_playlist" onClick={handleOpenCreatePlaylist} >Create New Playlist</div>
-                            {playlists.map((item) => (
+                            {/* {playlists.map((item) => (
                                 <PlayListSec 
                                     key={item.id} 
                                     playlist={item.playListName} 
@@ -98,7 +96,7 @@ function MainPlayer({setSongs, songs, PlaylistSongs,PlayNow, setCurrentSong}) {
                                     setselectePlaylist={setselectePlaylist}
                                     onPlay={() => handlePlaylistPlay(item.id)}
                                 />
-                            ))}
+                            ))} */}
 
                             <Modal className="createplaylistmodal" open={openCreatePlaylist} onClose={handleCloseCreatePlaylist}>
                                 <div style={{ padding: '20px' }}>
