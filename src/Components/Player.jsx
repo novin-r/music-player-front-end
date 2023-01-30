@@ -206,7 +206,7 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
             <p>{CurrentSong.album_artist}</p>
           </div>
         </section>
-        <section>
+        <section className={styles.music_progress_bar}>
           <div className="music-progress">
             <span>{convertTime(playerCurrentTime)}</span>
             <span className={styles.rangeSection}>

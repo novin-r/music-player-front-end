@@ -14,7 +14,6 @@
   background: #a0a0a0;
 }
 .musicoker-container {
-  background-color: #230641;
   height: 96.1vh;
   overflow: hidden;
   background-image: linear-gradient(315deg, #230641 0%, #0d324d 74%);
@@ -79,6 +78,7 @@ header .top-logo {
 }
 .main-player {
   position: relative;
+  display: flex;
 }
 .main-player > div {
   position: absolute;
@@ -95,12 +95,13 @@ header .top-logo {
 .main-player .music-progress {
   bottom: 15%;
   left: 5%;
-  width: 75%;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: white;
 }
 .main-player .music-progress .track-progress {
   width: 320px;
@@ -165,6 +166,7 @@ li {
   bottom: 0;
   position: fixed;
   width: 100%;
+  padding: 1em;
 }
 .home-footer .top-footer p {
   color: #fff;
