@@ -42,7 +42,7 @@ library.add(
   faPlay
 );
 
-export default function Player({Song, songs, setSong, PlayNow, CurrentSong, player, isPlay, setIsPlay, isActive}) {
+export default function Player({Song, songs, setSong, PlayNow, CurrentSong, player, isPlay, setIsPlay, isActive, setIsActive}) {
   const [loading, setLoading] = useState(true);
   const [PlayerSettings, setPlayer] = useState({
     playing: true,
@@ -72,6 +72,10 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
         });
     }
   }
+
+  const toggleClass = () => {
+    setIsActive(!isActive);
+  };
 
   function stopSong() {
     // player.pause()
@@ -153,7 +157,7 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
 
   let playAndPauseButton = () => {
     return (
-      <span className={styles.playAndPause_mobile}  >
+      <span className={isActive ?styles.playAndPause_1:styles.playAndPause_2 }  >
         {" "}
         {isPlay ? (
           <FontAwesomeIcon onClick={pauseSong} icon="pause" />
@@ -189,9 +193,10 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
 
   return (
     <div>
-      <div className={styles.main_player} >
-        <section className={styles.music_info_sec}>
-          <div className={styles.music_image}>
+      <div className={styles.main_player}  >
+        <div className={isActive ?styles.whiteLine_1:styles.whiteLine_2} onClick={event =>{ event.stopPropagation(); setIsActive(!isActive);}} ></div>
+        <section className={isActive ? styles.music_info_sec_1:styles.music_info_sec_2}>
+          <div className={isActive ?styles.music_image_1:styles.music_image_2}>
             <img
               src={
                 CurrentSong.image
@@ -201,14 +206,14 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
               alt=""
             />
           </div>
-          <div className={styles.music_info}>
+          <div className={isActive ? styles.music_info_1: styles.music_info_2 }>
             <h6 className="m-0">{CurrentSong.name.replace(/\.[^/.]+$/, "")}</h6>
             <p>{CurrentSong.album_artist}</p>
           </div>
         </section>
         <section className={styles.music_progress_bar}>
           <div className="music-progress">
-            <span className={styles.playerCurrentTime_mobile} >{convertTime(playerCurrentTime)}</span>
+            <span className={isActive ? styles.playerCurrentTime_1:styles.playerCurrentTime_2} >{convertTime(playerCurrentTime)}</span>
             <span className={styles.rangeSection}>
               <div className={styles.range}>
                 <input
@@ -216,7 +221,7 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
                   min="1"
                   max="100"
                   value={progressBar}
-                  className={styles.slider_mobile}
+                  className={isActive ? styles.slider_1 : styles.slider_2 }
                   id="myRange"
                   onChange={(e) => {
                     spolaMusic(e);
@@ -232,9 +237,9 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
                                  style={{width: CurrentSong.length.replace(/\.[^/.]+$/, "").split(':').reduce((acc,time) => (60 * acc) + +time) / PlayerSettings.duration * 100 + '%'}}></div>
                         </div> */}
             </span>
-            <span className={styles.currentSong_length_mobile} >{CurrentSong.length.replace(/\.[^/.]+$/, "")}</span>
+            <span className={isActive ?styles.currentSong_length_1:styles.currentSong_length_2} >{CurrentSong.length.replace(/\.[^/.]+$/, "")}</span>
           </div>
-          <div className={styles.player_buttons}>
+          <div className={isActive ?"":styles.player_buttons}>
             {isActive?"":
               <span>
                 <FontAwesomeIcon icon="step-backward" onClick={prevSong} />

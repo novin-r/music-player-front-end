@@ -1,33 +1,73 @@
 .main_player {
   position: relative;
   display: flex;
+  color:white;
 }
-.slider_mobile {
+
+.whiteLine_1{
+  display: none;
+}
+
+.whiteLine_2{
+  display: block;
+  background-color: white;
+  width: 50px;
+  height: 5px;
+  position: absolute;
+  left: 45%;
+  top: 10px;
+  border-radius: 10px;
+}
+.slider_1 {
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
   -webkit-region-fragment: 0;
-  height: 1px;
+  height: 4px;
   border-radius: 5px;
   outline: none;
   opacity: 1;
-  
 }
 
-.playerCurrentTime_mobile{
+.slider_2 {
+  position: absolute;
+  top: 110%;
+  left: 20%;
+  right: 20%;
+  -webkit-region-fragment: 0;
+  height: 4px;
+  border-radius: 5px;
+  outline: none;
+  opacity: 1;
+}
+
+.playerCurrentTime_1{
   position: absolute;
   left: 5%;
   top: 10px;
   font-weight: bold;
-
 }
 
-.currentSong_length_mobile{
+.playerCurrentTime_2{
+  position: absolute;
+  left: 5%;
+  top: 107%;
+  font-weight: bold;
+}
+
+.currentSong_length_1{
   position: absolute;
   right: 5%;
   top: 10px;
   font-weight: bold;
+}
 
+.currentSong_length_2{
+  position: absolute;
+  right: 1%;
+  top: 107%;
+  font-weight: bold;
 }
 
 .container {
@@ -71,9 +111,6 @@
   }
 
   .range input{
-    -webkit-appearance:none;
-    width: 100%;
-    height:6px;
     border-radius:5px;
     background-color:#7880cb;
     outline:none;
@@ -87,27 +124,41 @@
     background-color:#404ec7;
   }
 
-  .music_info_sec{
+  .music_info_sec_1{
     display: flex;
     justify-content: flex-start;
     position: relative;
     width: 80%;
-    color: rgb(29, 29, 29);
   }
 
-  .music_image{
+  .music_info_sec_2{
+    position: relative;
+  }
+
+  .music_image_1{
     margin-left: 8%;
     margin-top: 12%;
     width: 20%;
   }
 
-  .music_image img{
-    border-radius: 50%;
-    width: 100%;
-  
+  .music_image_2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
   }
 
-  .music_info{
+  .music_image_1 img{
+    border-radius: 50%;
+    width: 100%; 
+  }
+
+  .music_image_2 img{
+    border-radius: 5px;
+    width: 75%; 
+  }
+
+  .music_info_1{
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -115,12 +166,29 @@
     padding-left: 10px;
   }
 
-  .playAndPause_mobile{
+  .music_info_2{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 30px;
+    padding-left: 30px;
+  }
+
+  .playAndPause_1{
     position: absolute;
     top:50%;
     right: 10%;
   }
 
+  .player_buttons{
+    position: absolute;
+    top: 120%;
+    left: 25%;
+    right: 25%;
+    display: flex;
+    justify-content: space-around;
+    font-size: 25px;
+  }
 /* 
   .rangeSection{
     width: 85%;
