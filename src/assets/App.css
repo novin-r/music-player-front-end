@@ -76,7 +76,7 @@ header .top-logo {
   right: 5%;
   top: 26%;
 }
-.main-player {
+/* .main-player {
   position: relative;
   display: flex;
 }
@@ -88,8 +88,8 @@ header .top-logo {
   display: flex;
   justify-content: center;
   flex-direction: column;
-}
-.main-player .music-info h5 {
+} */
+/* .main-player .music-info h5 {
   width: 75%;
 }
 .main-player .music-progress {
@@ -131,10 +131,11 @@ header .top-logo {
   justify-content: space-evenly;
   font-size: 30px;
   bottom: 10px;
+  color: white;
 }
 .main-player .player-buttons span {
   cursor: pointer;
-}
+} */
 .main-playlist {
   height: 40rem;
   overflow-y: auto;
@@ -161,29 +162,27 @@ li {
   border-radius: 2px;
   margin: 0 10px 0 0;
 }
-.home-footer {
-  background-color: black;
+.home-footer-mobile {
+  background: rgba(167, 166, 166, 0.25);
+  border-radius: 5px;
   bottom: 0;
+  top: 85%;
   position: fixed;
   width: 100%;
-  padding: 1em;
+  transition: top 0.2s;
 }
-.home-footer .top-footer p {
-  color: #fff;
-  font-size: 12px;
+.home-footer-browser{
+  background: rgba(167, 166, 166, 0.25);
+  border-radius: 5px;
+  bottom: 0;
+  top: 20%;
+  position: fixed;
+  width: 100%;
+  transition: top 0.2s;
+
 }
-.home-footer .top-footer .social-icons a {
-  color: #ffffff;
-  margin: 0 5px;
-  font-size: 20px;
-  transition: 0.5s ease-in-out;
-}
-.home-footer .top-footer .social-icons a:hover {
-  color: rgba(255, 255, 255, 0.49);
-}
-.home-footer .used-icons a {
-  font-size: 40px !important;
-}
+
+
 .form-holder {
   border-radius: 20px;
   box-shadow: 0 0 5px #230641;
