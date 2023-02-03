@@ -1,43 +1,31 @@
 import React, { useEffect, useState } from "react";
 import DefaultImg from "../assets/img/default.jpg";
-import Box from "@mui/material/Box";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import styles from "./Progress.module.css";
 
 import {
-  faList,
   faStop,
   faStepForward,
+  faVolumeDown,
   faStepBackward,
-  faAngleDoubleLeft,
-  faAngleDoubleRight,
-  faUndoAlt,
   faVolumeOff,
   faVolumeMute,
-  faVolumeDown,
   faVolumeUp,
-  faCompactDisc,
   faPause,
-  faPlay,
+  faPlay
 } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
 import "./style.css";
 
 library.add(
-  faList,
   faStop,
-  faAngleDoubleLeft,
-  faAngleDoubleRight,
   faStepForward,
   faVolumeDown,
   faStepBackward,
-  faUndoAlt,
   faVolumeOff,
   faVolumeMute,
   faVolumeUp,
-  faCompactDisc,
   faPause,
   faPlay
 );
@@ -55,10 +43,6 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
     player.currentTime
   );
   const [progressBar, setProgressBar] = useState(0);
-
-  const skipTrackHandler = async (direction) => {
-    await console.log("Ok");
-  };
 
   useEffect(() => {
     const updateProgressBar = setInterval(() => {
@@ -85,13 +69,8 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
     setIsActive(!isActive);
   };
 
-  function stopSong() {
-    // player.pause()
-    // player.currentTime = 0
-  }
-
   function spolaMusic(e) {
-    player.currentTime = parseInt(e.target.value);
+    // player.currentTime = parseInt(e.target.value);
     // setPlayerCurrentTime(parseInt(e.target.value));
     // player.oncanplay = function() {
     // player.currentTime = parseInt(e.target.value);
@@ -111,14 +90,6 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
   function nextSong() {
     setSong(Song++);
     PlayNow(Song);
-  }
-
-  function AddSeconds() {
-    player.currentTime += 10;
-  }
-
-  function RemoveSeconds() {
-    player.currentTime -= 10;
   }
 
   function reSong() {
@@ -150,14 +121,6 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
     return mins + ":" + secs;
   }
 
-  // function showVolume() {
-  //     if (PlayerSettings.volume_bar) {
-  //         setPlayer({...PlayerSettings, volume_bar: false})
-  //     } else {
-  //         setPlayer({...PlayerSettings, volume_bar: true})
-  //     }
-  // }
-
   function handleVolume(e) {
     setPlayer({ ...PlayerSettings, volume: e.target.value / 100 });
     player.volume = PlayerSettings.volume;
@@ -181,12 +144,7 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
   }, []);
 
     useEffect(() => {
-  //tryed to put interval but the computer fan work hard
-//   setInterval(function () {
-    // if (isPlay === true) {
       setPlayerCurrentTime(player.currentTime);
-    // }
-//   }, 1000);
     }, [player.currentTime]);
 
   if (loading) {
@@ -236,16 +194,8 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
                     spolaMusic(e);
                     setProgressBar(e.target.value);
                   }}
-                  // onMouseUp={props.onMouseUp}
-                  // onTouchEnd={props.onTouchEnd}
                 />
               </div>
-
-              <div className="track-progress">
-                       
-                            <div className="track-child"
-                                 style={{width: CurrentSong.length.replace(/\.[^/.]+$/, "").split(':').reduce((acc,time) => (60 * acc) + +time) / PlayerSettings.duration * 100 + '%'}}></div>
-                        </div>
             </span>
             <span className={isActive ?styles.currentSong_length_1:styles.currentSong_length_2} >{CurrentSong.length.replace(/\.[^/.]+$/, "")}</span>
           </div>
@@ -261,7 +211,6 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
                 <FontAwesomeIcon icon="step-forward" onClick={nextSong} />
               </span>
             }
-
             <span className={`${styles.VRange} ${styles.range} ${isActive?"":styles.VRange_1} `}>
               <input
                 type="range"
