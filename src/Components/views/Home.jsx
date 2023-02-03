@@ -11,7 +11,7 @@ library.add(faFacebook, faLinkedin, faGithub, faLaravel, faReact);
 
 function Home({setPlaylistid, setselectePlaylist}) {
     return (
-        <div className="musicoker-container">
+        <div className="melodytrip-container">
             <Playlist setPlaylistid={setPlaylistid} setselectePlaylist={setselectePlaylist} />
         </div>
     );
