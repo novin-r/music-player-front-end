@@ -14,7 +14,7 @@
   width: 50px;
   height: 5px;
   position: absolute;
-  left: 45%;
+  left: 46%;
   top: 10px;
   border-radius: 10px;
   z-index: 999;
@@ -78,18 +78,7 @@
     width: 100%;
     margin-bottom: 20px;
   }
-  
-  /* .slider {
-    -webkit-appearance: auto;
-    width: 100%;
-    height: 4px;
-    border-radius: 5px;
-    outline: none;
-    opacity: 1;
-    -webkit-transition: 0.2s;
-    transition: opacity 0.2s;
-  } */
-  
+    
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -130,23 +119,26 @@
     display: flex;
     justify-content: flex-start;
     position: relative;
-    width: 80%;
+    width: 100%;
   }
 
   .music_info_sec_2{
     position: relative;
+    width: 100%;
+
   }
 
   .music_image_1{
     margin-left: 8%;
-    margin-top: 12%;
-    width: 20%;
+    margin-top: 2.2rem;
+    width: 4.8rem;
   }
 
   .music_image_2{
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: auto;
     margin-top: 30px;
   }
 
@@ -164,7 +156,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding-top: 50px;
+    padding-top: 3rem;
     padding-left: 10px;
   }
 
@@ -178,7 +170,7 @@
 
   .playAndPause_1{
     position: absolute;
-    top:50%;
+    top:3.5rem;
     right: 10%;
   }
 
@@ -191,26 +183,35 @@
     justify-content: space-around;
     font-size: 25px;
   }
-/* 
-  .rangeSection{
-    width: 85%;
-  } */
 
-  @media only screen and (max-width: 400px) {
-    /* .container {
-      margin: 40px 0;
+ @media only screen and (max-width: 800px) {
+    .VRange {
+      display: none;
     }
-
-    .music_image img{
-      height: 70%;
-    }
-
-    .music_info{
-      font-size: 1.02rem;
-    }
-    .rangeSection{
-      width: 65%;
-    } */
-
   }
-  
+  @media only screen and (min-width: 800px) {
+    .playAndPause_1{
+      right: 45%;
+      border: 1px solid white;
+      padding: 0.2rem 0.4rem 0.2rem 0.6rem;
+      border-radius: 50%;
+    }
+    .VRange {
+      position: absolute;
+      top: 3.5rem;
+      right: 1rem;
+    }
+
+    .VRange_1{
+      top: -8rem !important;
+      right: -10rem !important;
+    }
+  }
+
+
+
+  @media only screen and (min-width: 430px) {
+    .music_image_2 img{
+      width: 20rem; 
+    }
+  }

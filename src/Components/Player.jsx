@@ -252,7 +252,7 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
               </span>
             }
 
-            <span className={`VRange ${styles.range}`}>
+            <span className={`${styles.VRange} ${styles.range} ${isActive?"":styles.VRange_1} `}>
               <input
                 type="range"
                 min="1"
