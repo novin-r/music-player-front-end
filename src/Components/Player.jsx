@@ -157,7 +157,7 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
 
   let playAndPauseButton = () => {
     return (
-      <span className={isActive ?styles.playAndPause_1:styles.playAndPause_2 }  >
+      <span className={isActive ?styles.playAndPause_1:styles.playAndPause_2 } onClick={event =>{ event.stopPropagation();}}  >
         {" "}
         {isPlay ? (
           <FontAwesomeIcon onClick={pauseSong} icon="pause" />
@@ -223,6 +223,7 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
                   value={progressBar}
                   className={isActive ? styles.slider_1 : styles.slider_2 }
                   id="myRange"
+                  onClick={event =>{ event.stopPropagation();}}
                   onChange={(e) => {
                     spolaMusic(e);
                   }}
@@ -260,6 +261,7 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
                 value={PlayerSettings.volume * 100}
                 className={styles.volymRange}
                 onChange={handleVolume}
+                onClick={event =>{ event.stopPropagation();}}
               />
             </span>
           </div>
