@@ -60,6 +60,14 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
     await console.log("Ok");
   };
 
+  useEffect(() => {
+    const updateProgressBar = setInterval(() => {
+      setProgressBar((player.currentTime / player.duration) * 100);
+    }, 1000);
+  
+    return () => clearInterval(updateProgressBar);
+  }, [player]);
+
   function playSong() {
     setIsPlay(true);
     var playPromise = player.play();
@@ -218,7 +226,7 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
               <div className={styles.range}>
                 <input
                   type="range"
-                  min="1"
+                  min="0"
                   max="100"
                   value={progressBar}
                   className={isActive ? styles.slider_1 : styles.slider_2 }
@@ -226,17 +234,18 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
                   onClick={event =>{ event.stopPropagation();}}
                   onChange={(e) => {
                     spolaMusic(e);
+                    setProgressBar(e.target.value);
                   }}
                   // onMouseUp={props.onMouseUp}
                   // onTouchEnd={props.onTouchEnd}
                 />
               </div>
 
-              {/* <div className="track-progress">
+              <div className="track-progress">
                        
                             <div className="track-child"
                                  style={{width: CurrentSong.length.replace(/\.[^/.]+$/, "").split(':').reduce((acc,time) => (60 * acc) + +time) / PlayerSettings.duration * 100 + '%'}}></div>
-                        </div> */}
+                        </div>
             </span>
             <span className={isActive ?styles.currentSong_length_1:styles.currentSong_length_2} >{CurrentSong.length.replace(/\.[^/.]+$/, "")}</span>
           </div>
