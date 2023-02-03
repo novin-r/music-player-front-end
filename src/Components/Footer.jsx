@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { PassThrough } from 'stream';
 import Player from './Player';
 import './style.css';
 
@@ -10,15 +9,12 @@ function Footer({Song, songs, setSong, PlayNow, CurrentSong, player, isPlay, set
       setIsActive(!isActive);
     };
    
-  
     return (
         <div className={isActive ? "home-footer-1" : "home-footer-2"} onClick={isActive && toggleClass}>
-            <Player Song={Song} songs={songs} setSong={setSong} PlayNow={PlayNow} CurrentSong={CurrentSong} player={player} isPlay={isPlay} setIsPlay={setIsPlay} isActive={isActive} setIsActive={setIsActive} />
-        
+            <Player Song={Song} songs={songs} setSong={setSong} PlayNow={PlayNow} CurrentSong={CurrentSong} player={player} isPlay={isPlay} setIsPlay={setIsPlay} isActive={isActive} setIsActive={setIsActive} />      
         </div>
     );
   }
   
- 
   
   export default Footer;
