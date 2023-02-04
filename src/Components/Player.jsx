@@ -1,48 +1,36 @@
 import React, { useEffect, useState } from "react";
 import DefaultImg from "../assets/img/default.jpg";
-import Box from "@mui/material/Box";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import styles from "./Progress.module.css";
 
 import {
-  faList,
   faStop,
   faStepForward,
+  faVolumeDown,
   faStepBackward,
-  faAngleDoubleLeft,
-  faAngleDoubleRight,
-  faUndoAlt,
   faVolumeOff,
   faVolumeMute,
-  faVolumeDown,
   faVolumeUp,
-  faCompactDisc,
   faPause,
-  faPlay,
+  faPlay
 } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
 import "./style.css";
 
 library.add(
-  faList,
   faStop,
-  faAngleDoubleLeft,
-  faAngleDoubleRight,
   faStepForward,
   faVolumeDown,
   faStepBackward,
-  faUndoAlt,
   faVolumeOff,
   faVolumeMute,
   faVolumeUp,
-  faCompactDisc,
   faPause,
   faPlay
 );
 
-export default function Player({Song, songs, setSong, PlayNow, CurrentSong, player, isPlay, setIsPlay,}) {
+export default function Player({Song, songs, setSong, PlayNow, CurrentSong, player, isPlay, setIsPlay, isActive, setIsActive}) {
   const [loading, setLoading] = useState(true);
   const [PlayerSettings, setPlayer] = useState({
     playing: true,
@@ -56,9 +44,13 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
   );
   const [progressBar, setProgressBar] = useState(0);
 
-  const skipTrackHandler = async (direction) => {
-    await console.log("Ok");
-  };
+  useEffect(() => {
+    const updateProgressBar = setInterval(() => {
+      setProgressBar((player.currentTime / player.duration) * 100);
+    }, 1000);
+  
+    return () => clearInterval(updateProgressBar);
+  }, [player]);
 
   function playSong() {
     setIsPlay(true);
@@ -73,13 +65,12 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
     }
   }
 
-  function stopSong() {
-    // player.pause()
-    // player.currentTime = 0
-  }
+  const toggleClass = () => {
+    setIsActive(!isActive);
+  };
 
   function spolaMusic(e) {
-    player.currentTime = parseInt(e.target.value);
+    // player.currentTime = parseInt(e.target.value);
     // setPlayerCurrentTime(parseInt(e.target.value));
     // player.oncanplay = function() {
     // player.currentTime = parseInt(e.target.value);
@@ -99,14 +90,6 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
   function nextSong() {
     setSong(Song++);
     PlayNow(Song);
-  }
-
-  function AddSeconds() {
-    player.currentTime += 10;
-  }
-
-  function RemoveSeconds() {
-    player.currentTime -= 10;
   }
 
   function reSong() {
@@ -138,14 +121,6 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
     return mins + ":" + secs;
   }
 
-  // function showVolume() {
-  //     if (PlayerSettings.volume_bar) {
-  //         setPlayer({...PlayerSettings, volume_bar: false})
-  //     } else {
-  //         setPlayer({...PlayerSettings, volume_bar: true})
-  //     }
-  // }
-
   function handleVolume(e) {
     setPlayer({ ...PlayerSettings, volume: e.target.value / 100 });
     player.volume = PlayerSettings.volume;
@@ -153,7 +128,7 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
 
   let playAndPauseButton = () => {
     return (
-      <span>
+      <span className={isActive ?styles.playAndPause_1:styles.playAndPause_2 } onClick={event =>{ event.stopPropagation();}}  >
         {" "}
         {isPlay ? (
           <FontAwesomeIcon onClick={pauseSong} icon="pause" />
@@ -169,12 +144,7 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
   }, []);
 
     useEffect(() => {
-  //tryed to put interval but the computer fan work hard
-//   setInterval(function () {
-    // if (isPlay === true) {
       setPlayerCurrentTime(player.currentTime);
-    // }
-//   }, 1000);
     }, [player.currentTime]);
 
   if (loading) {
@@ -189,9 +159,10 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
 
   return (
     <div>
-      <div className="main-player p-2">
-        <section className={styles.music_info_sec}>
-          <div className={styles.music_image}>
+      <div className={styles.main_player}  >
+        <div className={isActive ?styles.whiteLine_1:styles.whiteLine_2} onClick={event =>{ event.stopPropagation(); setIsActive(!isActive);}} ></div>
+        <section className={isActive ? styles.music_info_sec_1:styles.music_info_sec_2}>
+          <div className={isActive ?styles.music_image_1:styles.music_image_2}>
             <img
               src={
                 CurrentSong.image
@@ -201,48 +172,46 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
               alt=""
             />
           </div>
-          <div className={styles.music_info}>
-            <h5 className="m-0">{CurrentSong.name.replace(/\.[^/.]+$/, "")}</h5>
+          <div className={isActive ? styles.music_info_1: styles.music_info_2 }>
+            <h6 className="m-0">{CurrentSong.name.replace(/\.[^/.]+$/, "")}</h6>
             <p>{CurrentSong.album_artist}</p>
           </div>
         </section>
-        <section>
+        <section className={styles.music_progress_bar}>
           <div className="music-progress">
-            <span>{convertTime(playerCurrentTime)}</span>
+            <span className={isActive ? styles.playerCurrentTime_1:styles.playerCurrentTime_2} >{convertTime(playerCurrentTime)}</span>
             <span className={styles.rangeSection}>
               <div className={styles.range}>
                 <input
                   type="range"
-                  min="1"
+                  min="0"
                   max="100"
                   value={progressBar}
-                  className={styles.slider}
+                  className={isActive ? styles.slider_1 : styles.slider_2 }
                   id="myRange"
+                  onClick={event =>{ event.stopPropagation();}}
                   onChange={(e) => {
                     spolaMusic(e);
+                    setProgressBar(e.target.value);
                   }}
-                  // onMouseUp={props.onMouseUp}
-                  // onTouchEnd={props.onTouchEnd}
                 />
               </div>
-
-              {/* <div className="track-progress">
-                       
-                            <div className="track-child"
-                                 style={{width: CurrentSong.length.replace(/\.[^/.]+$/, "").split(':').reduce((acc,time) => (60 * acc) + +time) / PlayerSettings.duration * 100 + '%'}}></div>
-                        </div> */}
             </span>
-            <span>{CurrentSong.length.replace(/\.[^/.]+$/, "")}</span>
+            <span className={isActive ?styles.currentSong_length_1:styles.currentSong_length_2} >{CurrentSong.length.replace(/\.[^/.]+$/, "")}</span>
           </div>
-          <div className="player-buttons">
-            <span>
-              <FontAwesomeIcon icon="step-backward" onClick={prevSong} />
-            </span>
+          <div className={isActive ?"":styles.player_buttons}>
+            {isActive?"":
+              <span>
+                <FontAwesomeIcon icon="step-backward" onClick={prevSong} />
+              </span>
+            }
             {playAndPauseButton()}
-            <span>
-              <FontAwesomeIcon icon="step-forward" onClick={nextSong} />
-            </span>
-            <span className={`VRange ${styles.range}`}>
+            {isActive?"":
+              <span>
+                <FontAwesomeIcon icon="step-forward" onClick={nextSong} />
+              </span>
+            }
+            <span className={`${styles.VRange} ${styles.range} ${isActive?"":styles.VRange_1} `}>
               <input
                 type="range"
                 min="1"
@@ -250,6 +219,7 @@ export default function Player({Song, songs, setSong, PlayNow, CurrentSong, play
                 value={PlayerSettings.volume * 100}
                 className={styles.volymRange}
                 onChange={handleVolume}
+                onClick={event =>{ event.stopPropagation();}}
               />
             </span>
           </div>

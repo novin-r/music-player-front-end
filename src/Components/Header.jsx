@@ -68,7 +68,7 @@ function Header() {
         <header className="container">
             <div className="row">
                 <div className="col-6 logo">
-                    <Link to="/" className="nav-main-link">BeHighOnMusic</Link>
+                    <Link to="/" className="nav-main-link">MelodyTrip</Link>
                 </div>
                 <div className="col-6 btn-mobile">
                     {AuthButtons}

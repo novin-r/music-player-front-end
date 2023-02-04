@@ -1,9 +1,6 @@
 import React from "react";
-import MainPlayer from "../MainPlayer";
-// import Player from "../Player";
-// import Playlist from "../Playlist";
-// import Wave from '../../assets/img/Wave.svg'
-// import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import Playlist from "../Playlists";
+
 import {library} from "@fortawesome/fontawesome-svg-core";
 import '../style.css';
 import {
@@ -12,11 +9,11 @@ import {
 
 library.add(faFacebook, faLinkedin, faGithub, faLaravel, faReact);
 
-function Home() {
+function Home({setPlaylistid, setselectePlaylist}) {
     return (
-        <>
-            <MainPlayer/>
-        </>
+        <div className="melodytrip-container">
+            <Playlist setPlaylistid={setPlaylistid} setselectePlaylist={setselectePlaylist} />
+        </div>
     );
 }
 

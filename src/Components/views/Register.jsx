@@ -66,7 +66,7 @@ function Register() {
             <div className="form-container">
                 <form action="" onSubmit={RegisterSubmit}>
                     <p className="text-center">
-                        Create Account at BeHighOnMusic
+                        Create Account at MelodyTrip
                     </p>
                     <div className="row">
                         <div className="col-6 form-group">

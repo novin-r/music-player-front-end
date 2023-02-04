@@ -77,7 +77,7 @@ function Login() {
             <div className="form-container login-form">
                 <form onSubmit={LoginSubmit}>
                     <p className="text-center">
-                        Login To BeHighOnMusic
+                        Login To MelodyTrip
                     </p>
                     <div className="form-group">
                         <div className="position-relative">
